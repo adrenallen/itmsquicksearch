@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "iTMS Quick Search Extension",
+  "description": "Extension to initiate a quick load lookup from any tab in chrome for iTMS",
+  "version": "1.0",
+  "icons": {"50": "icon.png"},
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/loadboard*"],
+      "js": ["addQSListener.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Shows the search box"
+    }
+  }
+}
